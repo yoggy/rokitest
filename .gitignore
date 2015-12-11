@@ -1,0 +1,14 @@
+*.swp
+*~
+
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+Makefile
+
+log.txt
+*.log
+
+rokitest01_freefall
+rokitest02_collision
+rokitest03_joint
