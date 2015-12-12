@@ -13,3 +13,6 @@ target_link_libraries(rokitest02_collision ${LIBS})
 
 add_executable (rokitest03_joint rokitest03_joint.cpp)
 target_link_libraries(rokitest03_joint ${LIBS})
+
+add_executable (rokitest04_motor rokitest04_motor.cpp)
+target_link_libraries(rokitest04_motor ${LIBS})

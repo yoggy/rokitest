@@ -89,6 +89,11 @@ int main(int argc, char *argv[])
 		else {
 			rkJointCreate(joint[i], RK_JOINT_REVOL); 
 			rkLinkAddChild(rklink[i - 1], rklink[i]);
+
+			// motor
+			rkMotor* rkmotor;
+			rkJointGetMotor(joint[1], &rkmotor);
+			rkMotorCreate (rkmotor, RK_MOTOR_TRQ);
 		}
 	}
 
@@ -112,6 +117,9 @@ int main(int argc, char *argv[])
 
 	// main loop
 	while (rkFDTime(&fd) < T){
+		double e = 150;
+		rkJointMotorSetInput(joint[1], &e);
+
 		rkFDUpdate(&fd);	
 
 		// draw
@@ -134,7 +142,7 @@ int main(int argc, char *argv[])
 
 			mvprintw(i, 15, "i=%d, pos=(%f, %f, %f)", i, x, y, z); 
 
-			mvprintw((int)(5-z), x + 20, "*");  // cube
+			mvprintw((int)(5-z), x + 30, "*");  // cube
 			
 		}
 
