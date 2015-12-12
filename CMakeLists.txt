@@ -19,3 +19,6 @@ target_link_libraries (rokitest04_motor ${LIBS})
 
 add_executable (rokitest05_underconstructionjoint rokitest05_underconstructionjoint.cpp)
 target_link_libraries (rokitest05_underconstructionjoint ${LIBS})
+
+add_executable (rokitest06_prism rokitest06_prism.cpp)
+target_link_libraries (rokitest06_prism ${LIBS})
