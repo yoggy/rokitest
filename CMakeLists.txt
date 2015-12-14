@@ -22,3 +22,7 @@ target_link_libraries (rokitest05_underconstructionjoint ${LIBS})
 
 add_executable (rokitest06_prism rokitest06_prism.cpp)
 target_link_libraries (rokitest06_prism ${LIBS})
+
+add_executable (rokitest07_failure rokitest07_failure.cpp)
+target_link_libraries (rokitest07_failure ${LIBS})
+
