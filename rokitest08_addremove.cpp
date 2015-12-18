@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
 			objs.push_back(obj); 
 			append_count ++;
 
-			rkFDUpdateInit(&fd);
+			rkFDUpdateInit(&fd); // ループの途中で追加・削除する場合は、rkFDUpdateInit()を呼ぶこと
 		}
 
 		// remove
