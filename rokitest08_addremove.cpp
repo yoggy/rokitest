@@ -116,8 +116,8 @@ int main(int argc, char *argv[])
 
 	// memo :
 	//   RK_JOINT_FLOATを持つオブジェクトをダミーでrkFDに追加しておく。
-    //   何もない状態orRK_JOINT_FIXEDのみなど、rkFDに自由度がない状態で
-    //   rkFDUpdateInit()を呼び出すと落ちる
+	//   何もない状態orRK_JOINT_FIXEDのみなど、rkFDに自由度がない状態で
+	//   rkFDUpdateInit()を呼び出すと落ちる
 	dummy = new RokiObject(&fd, "dummy", RK_JOINT_FLOAT); // push dummy object.  
 	_rkFDCellPush(&fd, dummy->lc);
 
