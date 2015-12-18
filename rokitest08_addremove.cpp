@@ -21,9 +21,9 @@ extern "C" {
 
 #define OBJECT_LIFE_SEC 3 
 
-class TestObject {
+class RokiObject {
 public:
-	TestObject(rkFD *fd, const char *name) : t(0) {
+	RokiObject(rkFD *fd, const char *name, const byte &joint_type) : t(0) {
 		this->name = name;
 
 		// cell
@@ -56,7 +56,7 @@ public:
 
 		// joint
 		joint = rkLinkJoint(rklink);
-		rkJointCreate(joint, RK_JOINT_FLOAT);
+		rkJointCreate(joint, joint_type);
 
 		rkChainSetMass(chain, 1.0);
 		rkChainSetOffset(chain);
@@ -111,11 +111,14 @@ int main(int argc, char *argv[])
 {
 	rkFD fd;
 	rkFDCreate(&fd);
-	TestObject *dummy;
-	std::vector<TestObject*> objs;
+	RokiObject *dummy;
+	std::vector<RokiObject*> objs;
 
-	// roki initialize
-	dummy = new TestObject(&fd, "dummy");
+	// memo :
+	//   RK_JOINT_FLOATを持つオブジェクトをダミーでrkFDに追加しておく。
+    //   何もない状態orRK_JOINT_FIXEDのみなど、rkFDに自由度がない状態で
+    //   rkFDUpdateInit()を呼び出すと落ちる
+	dummy = new RokiObject(&fd, "dummy", RK_JOINT_FLOAT); // push dummy object.  
 	_rkFDCellPush(&fd, dummy->lc);
 
 	rkFDODE2Assign(&fd, Regular);
@@ -126,10 +129,8 @@ int main(int argc, char *argv[])
 	rkFDSetSolver(&fd, Volume);
 	rkFDUpdateInit(&fd);
 
-
 	// setup ncurses
 	initscr();
-
 
 	// main loop
 	unsigned int append_count = 0;
@@ -138,7 +139,7 @@ int main(int argc, char *argv[])
 		if ((unsigned int)(rkFDTime(&fd)) > append_count) {
 			std::stringstream ss;
 			ss << "obj" << append_count;
-			TestObject *obj = new TestObject(&fd,ss.str().c_str());
+			RokiObject *obj = new RokiObject(&fd, ss.str().c_str(), RK_JOINT_FLOAT);
 			_rkFDCellPush(&fd, obj->lc);
 			obj->set_pos(append_count * 5, 0, 10);
 
@@ -149,10 +150,10 @@ int main(int argc, char *argv[])
 		}
 
 		// remove
-		std::vector<TestObject*>::iterator it = objs.begin();
+		std::vector<RokiObject*>::iterator it = objs.begin();
 		while(it != objs.end()) {
 			if ((*it)->t > OBJECT_LIFE_SEC) {
-				delete *it;          // delete TestObject instance
+				delete *it;          // delete RokiObject instance
 				it = objs.erase(it); // erase pointer from vector
 			}
 			else {
