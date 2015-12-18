@@ -26,3 +26,5 @@ target_link_libraries (rokitest06_prism ${LIBS})
 add_executable (rokitest07_failure rokitest07_failure.cpp)
 target_link_libraries (rokitest07_failure ${LIBS})
 
+add_executable (rokitest08_addremove rokitest08_addremove.cpp)
+target_link_libraries (rokitest08_addremove ${LIBS})
