@@ -9,6 +9,7 @@ Makefile
 log.txt
 *.log
 
+rokitest00_simple
 rokitest01_freefall
 rokitest02_collision
 rokitest03_joint

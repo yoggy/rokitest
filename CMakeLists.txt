@@ -5,6 +5,9 @@ project (roki_test)
 set (LIBS roki zeo zm cure m ncurses)
 set (CMAKE_CXX_FLAGS "-Wall -Wl,'--no-as-needed'")
 
+add_executable (rokitest00_simple rokitest00_simple.cpp)
+target_link_libraries (rokitest00_simple ${LIBS})
+
 add_executable (rokitest01_freefall rokitest01_freefall.cpp)
 target_link_libraries (rokitest01_freefall ${LIBS})
 
