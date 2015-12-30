@@ -31,3 +31,6 @@ target_link_libraries (rokitest07_failure ${LIBS})
 
 add_executable (rokitest08_addremove rokitest08_addremove.cpp)
 target_link_libraries (rokitest08_addremove ${LIBS})
+
+add_executable (rokitest09_parabola rokitest09_parabola.cpp)
+target_link_libraries (rokitest09_parabola ${LIBS})
